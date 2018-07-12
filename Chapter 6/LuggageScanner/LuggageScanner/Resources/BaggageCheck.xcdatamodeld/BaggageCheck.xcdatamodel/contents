@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Luggage" representedClassName="Luggage" syncable="YES" codeGenerationType="class">
+        <attribute name="arrivedAt" optional="YES" syncable="YES"/>
+        <attribute name="departedAt" optional="YES" syncable="YES"/>
+        <attribute name="identifier" optional="YES" syncable="YES"/>
+        <attribute name="weight" optional="YES" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Passenger" inverseName="luggage" inverseEntity="Passenger" syncable="YES"/>
+    </entity>
+    <entity name="Passenger" representedClassName="Passenger" syncable="YES" codeGenerationType="class">
+        <attribute name="familyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="givenName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="luggage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Luggage" inverseName="owner" inverseEntity="Luggage" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Passenger" positionX="-407" positionY="-0" width="128" height="88"/>
+        <element name="Luggage" positionX="-54" positionY="18" width="128" height="118"/>
+    </elements>
+</model>

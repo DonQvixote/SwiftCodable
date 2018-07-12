@@ -65,13 +65,14 @@ public class OrderSelectionViewController: UIViewController {
         } else {
             orders = []
         }
-        
-        let order = Order(seat: self.selectedSeat, itemCounts: [
-            .peanuts: self.peanutsLineItemView.quantity,
-            .chips: self.chipsLineItemView.quantity,
-            .popcorn: self.popcornLineItemView.quantity
-            ])
-        orders.append(order)
+        if self.peanutsLineItemView.quantity + self.chipsLineItemView.quantity + self.popcornLineItemView.quantity != 0 {
+            let order = Order(seat: self.selectedSeat, itemCounts: [
+                .peanuts: self.peanutsLineItemView.quantity,
+                .chips: self.chipsLineItemView.quantity,
+                .popcorn: self.popcornLineItemView.quantity
+                ])
+            orders.append(order)
+        }
         
         let encoder = PropertyListEncoder()
         UserDefaults.standard.set(try? encoder.encode(orders), forKey: "orders") // 在 Playground 里面 UserDefaults 貌似没有作用
@@ -79,6 +80,10 @@ public class OrderSelectionViewController: UIViewController {
         self.peanutsLineItemView.quantity = 0
         self.chipsLineItemView.quantity = 0
         self.popcornLineItemView.quantity = 0
+        
+        let ordersViewController = OrdersViewController()
+        ordersViewController.orders = orders
+        navigationController?.pushViewController(ordersViewController, animated: true)
     }
 }
 
